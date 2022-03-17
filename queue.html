@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html> <head>
+<title>queue</title>
+<style>
+.flex-container {
+display: flex; flex-direction:row;
+background-color:rgb(182, 173, 230);
+}.flex-container > div {
+background-color: #f1f1f1;
+margin: 10px; padding: 20px; font-size: 30px;
+}/* Responsive layout */
+@media (max-width: 600px) {
+.flex-container{
+flex-direction:column;
+background-color: rgb(90, 128, 0);
+}
+}
+</style></head><body> <h2>Sridevi Yandapalli build a reversed queue</h2> <label for="name">Input Element: </label><input id="name" type="text"></input><br><br> <div class="flex-container" id="target">
+<div class="queue">queue1</div>
+<div class="queue">queue2</div>
+<div class="queue">queue3</div>
+</div>
+<button style="color: blue;background-color: aqua;" onclick="makeNewDiv()">Push value</button>
+<button type="button" class="btn btn-primary" onclick="popItem()" style="color:rgb(0, 255, 115); background-color: aqua;" >Pop</button>
+<button type="button" class="btn btn-primary" onclick="Zapvalues()" style="color: rgb(0, 255, 149); background-color: aqua;">Zap</button>
+<button type="button" class="btn btn-primary" onclick="uniqueValues()" style="color:rgb(0, 255, 128); background-color: aqua;">Unique</button>
+</body>
+<script>
+function makeNewDiv(){
+let element = document.createElement("div");
+element.innerHTML = document.getElementById("name").value;
+element.className = "queue";
+document.getElementById('target').appendChild(element)
+}
+function popItem() {
+var queueItems = document.getElementsByClassName('queue');
+if (queueItems.length > 0) {
+queueItems[queueItems.length - 1].remove();
+} }
+function Zapvalues() {
+let queueItems = document.getElementsByClassName('queue');
+let inputData = document.getElementById("name").value;
+let queuesSize = queueItems.length; if(queuesSize == 0){
+alert("No Items in the queue to zap");
+return;
+}
+for (let index = 0; index < queuesSize; index++) {
+let element = queueItems[index].innerHTML;
+if (element == inputData) {
+console.log(queueItems[index])
+queueItems[index].remove();
+index--;
+} }
+}
+function uniqueValues(){ let queueItems = document.getElementsByClassName('queue');
+for (let i = queueItems.length-1; i >=0; i--) {
+let queueItem = queueItems[i].innerHTML;
+for (let j = i-1; j >= 0; j--) {
+if (queueItem == queueItems[j].innerHTML) {
+queueItems[j].remove();
+} }
+}}
+</script>
+</html>
+
